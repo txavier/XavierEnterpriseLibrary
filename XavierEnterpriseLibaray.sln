@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavierEnterpriseLibrary.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavierEnterpriseLibrary.Infrastructure", "XavierEnterpriseLibrary.Infrastructure\XavierEnterpriseLibrary.Infrastructure.csproj", "{3553416C-434F-4FD6-8AE5-21F73B7B479F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A03BFF28-2566-4CD9-8E90-8180104DE601}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C0BCA769-75F7-4A80-BFF2-93BE5A671604}"
 	ProjectSection(SolutionItems) = preProject
-		..\AutoClutch\Auto.Repo\Documentation\license.md = ..\AutoClutch\Auto.Repo\Documentation\license.md
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
