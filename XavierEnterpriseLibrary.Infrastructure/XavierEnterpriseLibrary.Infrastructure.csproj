@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XavierEnterpriseLibrary.Infrastructure</RootNamespace>
     <AssemblyName>XavierEnterpriseLibrary.Infrastructure</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Getters\FileByteArrayGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Senders\EmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XavierEnterpriseLibrary.Core\XavierEnterpriseLibrary.Core.csproj">
