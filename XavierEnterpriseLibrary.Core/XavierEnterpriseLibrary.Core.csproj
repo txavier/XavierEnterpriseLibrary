@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XavierEnterpriseLibrary.Core</RootNamespace>
     <AssemblyName>XavierEnterpriseLibrary.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,13 +49,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IEmailSender.cs" />
     <Compile Include="Interfaces\IFileByteArrayGetter.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Services\ImageManipulationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Project Items\license.md" />
+    <None Include="Project Items\XavierEnterpriseLibrary.1.0.1.nupkg" />
     <None Include="Project Items\XavierEnterpriseLibrary.1.0.0.nupkg" />
   </ItemGroup>
   <ItemGroup />
