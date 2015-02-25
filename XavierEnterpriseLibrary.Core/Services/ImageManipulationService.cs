@@ -9,7 +9,7 @@ using ZXing;
 
 namespace XavierEnterpriseLibaray.Services
 {
-    public class ImageManipulationService
+    public class ImageManipulationService : IImageManipulationService
     {
         private readonly IFileByteArrayGetter _fileByteArrayGetter;
 
@@ -24,14 +24,14 @@ namespace XavierEnterpriseLibaray.Services
         /// <param name="mimeType">The mimetype (i.e. [image/jpg]).</param>
         /// <param name="base64"></param>
         /// <returns></returns>
-        public static string GetDataURI(string mimeType, string base64)
+        public string GetDataURI(string mimeType, string base64)
         {
             var result = new StringBuilder("data:").Append(mimeType).Append(";base64,").Append(base64);
 
             return result.ToString();
         }
 
-        public static string GetBarcodeDataUri(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone)
+        public string GetBarcodeDataUri(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone)
         {
             var result = GetBarcodeBase64String(BarcodeFormat.CODE_128, code, RotateFlipType.Rotate90FlipNone);
 
@@ -56,7 +56,7 @@ namespace XavierEnterpriseLibaray.Services
         /// <param name="code"></param>
         /// <param name="rotateFlipType"></param>
         /// <returns></returns>
-        public static string GetBarcodeBase64String(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone)
+        public string GetBarcodeBase64String(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone)
         {
             var imageBytes = GetBarcodeByteArray(barcodeFormat, code, rotateFlipType);
 
@@ -83,7 +83,7 @@ namespace XavierEnterpriseLibaray.Services
             return base64String;
         }
 
-        public static byte[] GetBarcodeByteArray(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType)
+        public byte[] GetBarcodeByteArray(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType)
         {
             var result = GetBarcodeBitmap(barcodeFormat, code, rotateFlipType);
 
@@ -92,7 +92,7 @@ namespace XavierEnterpriseLibaray.Services
             return imageBytes;
         }
 
-        public static byte[] GetBitmapByteArray(Bitmap result)
+        public byte[] GetBitmapByteArray(Bitmap result)
         {
             var stream = new System.IO.MemoryStream();
 
@@ -103,7 +103,7 @@ namespace XavierEnterpriseLibaray.Services
             return imageBytes;
         }
 
-        public static Bitmap GetBarcodeBitmap(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType)
+        public Bitmap GetBarcodeBitmap(BarcodeFormat barcodeFormat, string code, RotateFlipType rotateFlipType)
         {
             IBarcodeWriter writer = new BarcodeWriter() { Format = barcodeFormat };
 
