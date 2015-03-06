@@ -16,15 +16,17 @@ namespace XavierEnterpriseLibrary.Core.Services
             _emailSender = emailSender;
         }
 
-        public void SendEmail(string from, List<string> to, List<string> cc, string subject, string emailMessage, string siteUrl, 
-            string logoUrl, string secondarySubject = null)
+        public void SendEmail(string from, List<string> to, List<string> cc, string subject, string emailMessage, string siteUrl,
+            string logoUrl, string secondarySubject = null, string logoPixelHeight = "24", string logoPixelWidth = "138")
         {
-            var emailHtml = GetEmailHtml(subject, emailMessage, siteUrl, logoUrl: logoUrl, secondarySubject: secondarySubject);
+            var emailHtml = GetEmailHtml(subject, emailMessage, siteUrl, logoUrl: logoUrl, secondarySubject: secondarySubject, 
+                logoPixelHeight: logoPixelHeight, logoPixelWidth: logoPixelWidth);
 
             _emailSender.SendEmail(from, to, cc, subject, emailHtml);
         }
 
-        public string GetEmailHtml(string subject, string body, string siteUrl, string logoUrl = null, string secondarySubject = null)
+        public string GetEmailHtml(string subject, string body, string siteUrl, string logoUrl = null, string secondarySubject = null,
+            string logoPixelHeight = "24", string logoPixelWidth = "138")
         {
             var lines = body.Split(new string[] { "\n" }, StringSplitOptions.None);
 
@@ -93,7 +95,7 @@ namespace XavierEnterpriseLibrary.Core.Services
             sb.AppendLine("");
             sb.AppendLine("    <td>");
             sb.AppendLine("");
-            sb.AppendLine("    <img src=\"" + logoUrl + "\"width=\"138\" border=\"0\" alt=\"Logo\"/>");
+            sb.AppendLine("    <img src=\"" + logoUrl + "\" style=\"margin:auto; max-height: " + logoPixelHeight + "px;max-width: 138px;border-radius: 4px\" border=\"0\" alt=\"Logo\"/>");
             sb.AppendLine("");
             sb.AppendLine("    </td>");
             sb.AppendLine("");
