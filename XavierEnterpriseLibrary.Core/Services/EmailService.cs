@@ -153,7 +153,7 @@ namespace XavierEnterpriseLibrary.Core.Services
             sb.AppendLine("");
             sb.AppendLine("    <td style=\"padding:20px 5px;\">");
             sb.AppendLine("");
-            sb.AppendLine("    <table class=\"details\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" width=\"600px\" style=\"display:block;\">");
+            sb.AppendLine("    <table class=\"details\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" width=\"1200px\" style=\"display:block;\">");
             sb.AppendLine("");
             sb.AppendLine(aggregateLines);
             sb.AppendLine("");
