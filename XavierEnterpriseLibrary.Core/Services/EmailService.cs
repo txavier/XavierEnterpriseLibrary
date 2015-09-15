@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using XavierEnterpriseLibrary.Core.Interfaces;
 
 namespace XavierEnterpriseLibrary.Core.Services
@@ -11,16 +10,35 @@ namespace XavierEnterpriseLibrary.Core.Services
     {
         private readonly IEmailSender _emailSender;
 
+        public string smtpHost { get; set; }
+
+        public int smtpPort { get; set; }
+
+        public bool? smtpEnableSSL { get; set; }
+
+        public bool? smtpDefaultCredentials { get; set; }
+
+        public string smtpNetworkUserName { get; set; }
+
+        public string smtpNetworkPassword { get; set; }
+
         public EmailService(IEmailSender emailSender)
         {
             _emailSender = emailSender;
         }
 
-        public void SendEmail(string from, List<string> to, List<string> cc, string subject, string emailMessage, string siteUrl,
+        public void SendEmail(string from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string emailMessage, string siteUrl,
             string logoUrl, string secondarySubject = null, string logoPixelHeight = "24", string logoPixelWidth = "138")
         {
-            var emailHtml = GetEmailHtml(subject, emailMessage, siteUrl, logoUrl: logoUrl, secondarySubject: secondarySubject, 
+            var emailHtml = GetEmailHtml(subject, emailMessage, siteUrl, logoUrl: logoUrl, secondarySubject: secondarySubject,
                 logoPixelHeight: logoPixelHeight, logoPixelWidth: logoPixelWidth);
+
+            _emailSender.smtpDefaultCredentials = smtpDefaultCredentials ?? false;
+            _emailSender.smtpHost = smtpHost;
+            _emailSender.smtpNetworkUserName = smtpNetworkUserName;
+            _emailSender.smtpNetworkPassword = smtpNetworkPassword;
+            _emailSender.smtpPort = smtpPort;
+            _emailSender.smtpEnableSSL = smtpEnableSSL ?? false;
 
             _emailSender.SendEmail(from, to, cc, subject, emailHtml);
         }

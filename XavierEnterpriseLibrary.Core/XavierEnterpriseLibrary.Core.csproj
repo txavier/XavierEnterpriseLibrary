@@ -65,6 +65,10 @@
     <None Include="Project Items\XavierEnterpriseLibrary.1.0.2.nupkg" />
     <None Include="Project Items\XavierEnterpriseLibrary.1.0.3.nupkg" />
     <None Include="Project Items\XavierEnterpriseLibrary.1.0.4.nupkg" />
+    <None Include="Project Items\XavierEnterpriseLibrary.1.0.5.nupkg" />
+    <None Include="Project Items\XavierEnterpriseLibrary.1.0.6.nupkg" />
+    <None Include="Project Items\XavierEnterpriseLibrary.1.0.7.nupkg" />
+    <None Include="Project Items\XavierEnterpriseLibrary.1.0.8.nupkg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,19 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
 {
     public class EmailSender : IEmailSender
     {
-        public void SendEmail(string from, List<string> to, List<string> cc, string subject, string emailMessage)
+        public string smtpHost { get; set; }
+
+        public int smtpPort { get; set; }
+
+        public bool? smtpEnableSSL { get; set; }
+
+        public bool? smtpDefaultCredentials { get; set; }
+
+        public string smtpNetworkUserName { get; set; }
+
+        public string smtpNetworkPassword { get; set; }
+
+        public void SendEmail(string from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string emailMessage)
         {
             MailMessage message = new MailMessage();
 
@@ -18,7 +30,7 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
 
             if (to != null)
             {
-                to.ForEach(i => message.To.Add(i));
+                to.ToList().ForEach(i => message.To.Add(i));
             }
             else
             {
@@ -27,7 +39,7 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
 
             if (cc != null)
             {
-                cc.ForEach(i => message.CC.Add(i));
+                cc.ToList().ForEach(i => message.CC.Add(i));
             }
 
             message.Subject = subject;
@@ -38,6 +50,16 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
 
             using (SmtpClient client = new SmtpClient())
             {
+                client.UseDefaultCredentials = smtpDefaultCredentials ?? false;
+
+                client.Host = smtpHost;
+
+                client.Credentials = new System.Net.NetworkCredential(smtpNetworkUserName, smtpNetworkPassword);
+
+                client.Port = smtpPort;
+
+                client.EnableSsl = smtpEnableSSL ?? false;
+
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                 client.Send(message);
