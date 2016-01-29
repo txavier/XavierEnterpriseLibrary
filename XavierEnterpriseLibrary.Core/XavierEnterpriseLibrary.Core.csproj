@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IEmailSender.cs" />
     <Compile Include="Interfaces\IFileByteArrayGetter.cs" />
+    <Compile Include="Objects\EmailAttachment.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IImageManipulationService.cs" />

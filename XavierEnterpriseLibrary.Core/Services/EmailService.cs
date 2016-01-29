@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XavierEnterpriseLibrary.Core.Interfaces;
+using XavierEnterpriseLibrary.Core.Objects;
 
 namespace XavierEnterpriseLibrary.Core.Services
 {
@@ -22,6 +23,9 @@ namespace XavierEnterpriseLibrary.Core.Services
 
         public string smtpNetworkPassword { get; set; }
 
+        public IEnumerable<EmailAttachment> emailAttachments { get; set; }
+
+
         public EmailService(IEmailSender emailSender)
         {
             _emailSender = emailSender;
@@ -39,6 +43,7 @@ namespace XavierEnterpriseLibrary.Core.Services
             _emailSender.smtpNetworkPassword = smtpNetworkPassword;
             _emailSender.smtpPort = smtpPort;
             _emailSender.smtpEnableSSL = smtpEnableSSL ?? false;
+            _emailSender.emailAttachments = emailAttachments;
 
             _emailSender.SendEmail(from, to, cc, subject, emailHtml);
         }

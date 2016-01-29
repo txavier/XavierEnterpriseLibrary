@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using XavierEnterpriseLibrary.Core.Interfaces;
+using XavierEnterpriseLibrary.Core.Objects;
 
 namespace XavierEnterpriseLibrary.Infrastructure.Senders
 {
@@ -21,6 +24,8 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
         public string smtpNetworkUserName { get; set; }
 
         public string smtpNetworkPassword { get; set; }
+
+        public IEnumerable<EmailAttachment> emailAttachments { get; set; }
 
         public void SendEmail(string from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string emailMessage)
         {
@@ -47,6 +52,22 @@ namespace XavierEnterpriseLibrary.Infrastructure.Senders
             message.IsBodyHtml = true;
 
             message.Body = emailMessage;
+
+            foreach(var emailAttachment in emailAttachments)
+            {
+                var stream = new MemoryStream(emailAttachment.Data);
+
+                var attachment = new Attachment(stream, emailAttachment.Filename);
+
+                ContentDisposition disposition = attachment.ContentDisposition;
+
+                if (emailAttachment.CreationDate.HasValue)
+                {
+                    disposition.CreationDate = emailAttachment.CreationDate.Value;
+                }
+
+                message.Attachments.Add(attachment);
+            }
 
             using (SmtpClient client = new SmtpClient())
             {

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using XavierEnterpriseLibrary.Core.Objects;
+
 namespace XavierEnterpriseLibrary.Core.Interfaces
 {
     public interface IEmailSender
@@ -10,5 +13,6 @@ namespace XavierEnterpriseLibrary.Core.Interfaces
         string smtpNetworkPassword { get; set; }
         string smtpNetworkUserName { get; set; }
         int smtpPort { get; set; }
+        IEnumerable<EmailAttachment> emailAttachments { get; set; }
     }
 }
